@@ -18,6 +18,10 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: read
+  packages: write
+
 env:
   REGISTRY: ghcr.io
   DOCKER_DIRECTORY: docker/images
@@ -32,10 +36,6 @@ jobs:
     # Since env variables can't be passed to reusable workflows, we need to pass them as outputs
     name: Evaluate force rebuild and set env variables as outputs
     runs-on: ubuntu-24.04
-
-    permissions:
-      contents: read
-      packages: write
 
     outputs:
       force_rebuild: ${{ steps.check.outputs.force_rebuild }}
